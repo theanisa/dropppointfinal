@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | DropPoint</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blacl flex items-center justify-center min-h-screen font-sans">
+
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center text-black mb-6">Register for DropPoint</h2>
+
+    <form action="register_process.php" method="POST" onsubmit="return validateID()" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium">Student ID</label>
+        <input type="text" name="student_id" id="student_id" required placeholder="e.g. 231-115-024" class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg">
+        <p id="idError" class="text-red-500 text-sm hidden mt-1">Student ID must contain -115- for CSE department.</p>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Full Name</label>
+        <input type="text" name="name" required class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Email</label>
+        <input type="email" name="email" required class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Contact</label>
+        <input type="text" name="contact" required class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Password</label>
+        <input type="password" name="password" required class="w-full mt-1 px-3 py-2 border border-gray-300 rounded-lg">
+      </div>
+
+      <button type="submit" class="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-500 transition">
+        Register
+      </button>
+    </form>
+
+    <p class="text-sm mt-4 text-center text-gray-600">
+      Already have an account? <a href="login.html" class="text-black-600 hover:underline">Login</a>
+    </p>
+  </div>
+
+  <script>
+    function validateID() {
+      const id = document.getElementById('student_id').value.trim();
+      const error = document.getElementById('idError');
+
+      if (!id.includes('-115-')) {
+        error.classList.remove('hidden');
+        return false;
+      }
+
+      error.classList.add('hidden');
+      return true;
+    }
+  </script>
+
+</body>
+</html>
