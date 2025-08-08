@@ -1,15 +1,14 @@
 <?php
-// Your DB connection setup here
 include 'dbconfig.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_id = $_POST['student_id'];
-    $name = $_POST['name'];
+    $full_name = $_POST['name']; // Change variable name to match table
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // secure hashing
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (student_id, name, email, password) 
-            VALUES ('$student_id', '$name', '$email', '$password')";
+    $sql = "INSERT INTO users (student_id, full_name, email, password) 
+            VALUES ('$student_id', '$full_name', '$email', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         echo "
@@ -19,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </script>
         ";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $conn->error;
     }
 
     $conn->close();
