@@ -40,8 +40,8 @@ $postsResult = $stmt->get_result();
 
 <!-- NAV -->
 <header class="bg-white shadow">
-  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-    <div class="text-2xl font-bold font-monno text-black ">DropPoint</div>
+  <div class="w-full px-4 py-3 flex items-center justify-between">
+    <div class="text-2xl font-bold  italic bg-black-100 text-black px-4 py-2 rounded-full shadow font-sans ">DropPoint</div>
 
     <form method="GET" class="flex gap-2 items-center">
       <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Search posts, location..." class="border rounded px-3 py-1 w-64">
@@ -50,12 +50,12 @@ $postsResult = $stmt->get_result();
         <option value="lost" <?php if($filter=='lost') echo 'selected'; ?>>Lost</option>
         <option value="found" <?php if($filter=='found') echo 'selected'; ?>>Found</option>
       </select>
-      <button class="bg-blue-600 text-white px-3 py-1 rounded">Search</button>
+      <button class="bg-black text-white px-3 py-1 rounded">Search</button>
     </form>
 
     <div class="flex items-center gap-4">
       <div class="text-sm text-gray-700"><?php echo htmlspecialchars($full_name); ?></div>
-      <a href="profile.php" class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+      <a href="profile.php" class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center">
         <?php echo strtoupper(substr($full_name,0,1)); ?>
       </a>
     </div>
@@ -63,18 +63,18 @@ $postsResult = $stmt->get_result();
 </header>
 
 <!-- LAYOUT -->
-<main class="max-w-6xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<main class="max-w-8xl mx-auto px-4 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
   <!-- FEED (2 cols) -->
   <section class="lg:col-span-2 space-y-6">
     <!-- Post prompt -->
     <div class="bg-white p-4 rounded shadow">
       <div class="flex gap-3">
-        <div class="h-12 w-12 bg-gray-300 rounded-full flex items-center justify-center text-xl text-white">
+        <div class="h-12 w-12 bg-black rounded-full flex items-center justify-center text-xl text-white">
           <?php echo strtoupper(substr($full_name,0,1)); ?>
         </div>
         <div class="flex-1">
           <p class="font-semibold text-gray-700">Lost anything? Found anything?</p>
-          <button onclick="document.getElementById('postForm').classList.toggle('hidden')" class="mt-2 w-full text-left border rounded px-3 py-2 text-gray-600">What's on your mind?</button>
+          <button onclick="document.getElementById('postForm').classList.toggle('hidden')" class="mt-2 w-full text-left border rounded px-3 py-2 text-gray-600">Share Details Here...</button>
         </div>
       </div>
 
@@ -95,7 +95,7 @@ $postsResult = $stmt->get_result();
           <input type="file" name="image" accept="image/*" class="border rounded px-3 py-2">
         </div>
         <div class="mt-3 flex gap-2">
-          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Post</button>
+          <button type="submit" class="bg-black text-white px-4 py-2 rounded">Post</button>
           <button type="button" onclick="document.getElementById('postForm').classList.add('hidden')" class="px-4 py-2 border rounded">Cancel</button>
         </div>
       </form>
@@ -117,11 +117,16 @@ $postsResult = $stmt->get_result();
               <?php endif; ?>
               <div class="mt-2 text-sm text-gray-500">Location: <?php echo htmlspecialchars($post['location']); ?> • <?php echo htmlspecialchars($post['created_at']); ?></div>
             </div>
-            <div class="text-right">
+            <div class="flex-justify-between items-center">
               <?php if ($post['status'] === 'claimed'): ?>
                 <span class="text-green-600 font-semibold">✅ Claimed</span>
               <?php elseif ((int)$post['user_id'] === $user_id): ?>
-                <a href="claim_post.php?post_id=<?php echo $post['id']; ?>" class="bg-green-500 text-white px-3 py-1 rounded text-sm">Mark as Claimed</a>
+              
+             <a href="claim_post.php?post_id=<?php echo $post['id']; ?>"
+             class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded shadow transition duration-150 ease-in-out">
+             Mark as Claimed
+             </a>
+
               <?php endif; ?>
             </div>
           </div>
@@ -172,7 +177,7 @@ $postsResult = $stmt->get_result();
         $urow = $u->get_result()->fetch_assoc();
       ?>
       <p class="text-sm text-gray-500">Member since: <?php echo htmlspecialchars($urow['created_at'] ?? ''); ?></p>
-      <a href="profile.php" class="inline-block mt-3 text-sm text-blue-600 underline">Edit Profile</a>
+      <a href="profile.php" class="inline-block mt-3 text-sm text-black underline">Edit Profile</a>
     </div>
 
     <div class="bg-white p-4 rounded shadow text-sm text-gray-700">
