@@ -86,7 +86,7 @@ if (!isset($_SESSION['student_id'])) {
       </form>
     </div>
 
-    <!-- Placeholder for posts -->
+    <!-- Placeholder for recent posts -->
     <div class="bg-white rounded-lg shadow-md p-4">
       <h3 class="text-lg font-bold mb-4">Recent Posts</h3>
       <p class="text-gray-500">No recent posts yet.</p>
