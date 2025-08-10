@@ -26,7 +26,7 @@ MySQL (Database).
 
 Group Name: Bits & beauties
 
-- Anisa Binte Faruk (231-115-024),
-- Fatima Akter (231-115-034),
-- Bushra Hossain Rema (231-115-005),
+- Anisa Binte Faruk (231-115-024)
+- Fatima Akter (231-115-034)
+- Bushra Hossain Rema (231-115-005)
 - Mahiya Akter Niha(231-115-006)
