@@ -1,6 +1,6 @@
 DropPoint – Lost & Found Item Tracker for Metropolitan University
 DropPoint is a campus-based web application that helps students report and search for lost or found items at Metropolitan University. It aims to reconnect students with their belongings easily and efficiently through a user-friendly interface.
-
+---
 🔍 Features:
 -Student registration and login (CSE ID validation included)
 -Lost and found item posting with date, location, and image
@@ -8,13 +8,13 @@ DropPoint is a campus-based web application that helps students report and searc
 -Edit profile information
 -Search and filter functionality
 -Comment section on each post
-
+---
 Built using:
 HTML,
 Tailwind CSS,
 PHP,
 MySQL (Database).
-
+---
 
 👥 Group Members: 
 
