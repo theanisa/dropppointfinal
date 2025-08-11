@@ -4,17 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DropPoint | Lost & Found</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="icon" href="images/favicon.png" type="image/png">
 
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
   }
 
     html {
       scroll-behavior: smooth;
+
     }
     .fade-up {
       opacity: 0;
@@ -27,40 +31,52 @@
     }
   </style>
 </head>
-<body class="bg-[#f5f7f9] text-gray-800">
+<body class=" bg-black-50 fade-up-500">
 
   <!-- Navbar -->
-  <nav class="bg-white shadow fixed top-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-      <div class="text-2xl font-bold text-black">DropPoint</div>
-      <div class="space-x-6">
-        <a href="#how" class="text-gray-700 hover:text-black">How It Works</a>
-        <a href="login.html" class="text-black-600 hover:text-white border border-black-600 px-4 py-2 rounded hover:bg-black transition">Login</a>
-        <a href="register.html" class="text-white bg-black px-4 py-2 rounded hover:bg-black-60 transition">Register</a>
-      </div>
+<nav class=" top-0 left-0  w-full z-10">
+  <div class=" mx-auto flex items-center">
+    <!-- Left: Logo -->
+    <div class="px-6 pl-12 py-2">
+      <a href="dashboard.php" class="text-4xl font-bold italic text-black font-sans">
+        DropPoint
+      </a>
     </div>
-  </nav>
 
+    <!-- Right: Menu (with curve on left side) -->
+    <div class="flex items-center space-x-6 bg-gray-100 px-16 py-8 rounded-l-full ml-auto">
+      <a href="#how" class="text-gray-700 hover:text-black hover:text-xl font-semibold transition">
+        How It Works
+      </a>
+      <a href="login.html" class="text-black hover:text-white text-xl border border-black px-4 py-2 rounded hover:bg-black transition">
+        Login
+      </a>
+      <a href="register.html" class="text-black font-semibold text-xl bg-orange-500 px-4 py-2 rounded font-sans hover:text-white hover:bg-black transition">
+        Register
+      </a>
+    </div>
+  </div>
+</nav>
   <!-- Hero Section -->
- <section class="min-h-screen flex items-center justify-center bg-white px-8 fade-up">
-  <div class="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
+ <section class="h-[calc(100vh-80px)] flex items-center justify-center">
+  <div class=" max-w-8xl w-full grid md:grid-cols-2 gap-12 items-center px-12">
     
     <!-- LEFT SIDE: Text -->
     <div>
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-gray-900 leading-tight">
-        Find What’s Lost. Return What’s Found.
+      <h1 class="text-4xl md:text-8xl font-bold mb-6 font-family:'Raleway'  leading-tight">
+        Find What’s Lost.<br> Return What’s Found.
       </h1>
-      <p class="text-lg text-gray-600 mb-6">
-        DropPoint is Metropolitan University's official Lost & Found platform. Post items, track them, and connect with the rightful owners easily.
+      <p class="text-xl text-gray-600 mb-8 text-4xl font-family:'Raleway'">
+       <span style="color:orange; font-weight:bold;"> DropPoint </span> is Metropolitan University's official Lost & Found platform. Post items, track them, and connect with the rightful owners easily.
       </p>
-      <a href="#" class="inline-block bg-black text-white px-6 py-3 rounded-md hover:bg-gray-800 transition">
+      <a href="login.html" class="inline-block bg-black text-white font-semibold px-8 py-4 rounded-md hover:bg-orange-500 hover:text-xl hover:text-black transition">
         Get Started
       </a>
     </div>
 
     <!-- RIGHT SIDE: Image -->
-    <div class="flex justify-center">
-      <img src="Picures/image.jpg" alt="Lost item" class="w-full max-w-sm rounded-lg shadow-md">
+    <div class=" flex justify-center">
+      <img src="Picures/image.jpg" alt="Lost item" class=" w-full max-w-md rounded-lg ">
     </div>
 
   </div>
@@ -68,39 +84,39 @@
 
 
   <!-- How It Works -->
-  <section id="how" class="py-20 bg-white">
-    <div class="max-w-5xl mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center text-black mb-12">How It Works</h2>
-      <div class="grid md:grid-cols-3 gap-8 fade-up">
-        <div class="bg-gray p-6 rounded-lg shadow hover:shadow-md transition">
+  <section id="how" class="py-20 ">
+    <div class="max-w-8xl mx-auto px-6 ">
+      <h2 class="text-5xl font-bold text-center text-black mb-12">How It Works</h2>
+      <div class="grid md:grid-cols-3 gap-8 fade-up-500">
+        <div class="bg-gray-200 p-6 rounded-lg drop-shadow-xl  hover:shadow-md transition">
           <div class="text-4xl font-bold text-black mb-4">1</div>
-          <h3 class="text-xl font-semibold mb-2">Post an Item</h3>
-          <p class="text-black">Found or lost something? Post it with item details, date, and image.</p>
+          <h3 class="text-3xl font-semibold mb-2 text-orange-500 font-family:'Baloo'">Post an Item</h3>
+          <p class="text-black text-2xl font-sans">Found or lost something? Post it with item details, date, and image.</p>
         </div>
-        <div class="bg-black-50 p-6 rounded-lg shadow hover:shadow-md transition">
+        <div class="bg-gray-200 p-6 rounded-lg drop-shadow-xl fade-up-500  hover:shadow-md transition">
           <div class="text-4xl font-bold text-black mb-4">2</div>
-          <h3 class="text-xl font-semibold mb-2">Get Matched</h3>
-          <p class="text-black">Others will see your post and reach out if they have it or know about it.</p>
+          <h3 class="text-3xl font-semibold mb-2 text-orange-500  font-family:'Baloo'">Get Matched</h3>
+          <p class="text-black text-2xl font-sans">Others will see your post and reach out if they have it or know about it.</p>
         </div>
-        <div class="bg-gray p-6 rounded-lg shadow hover:shadow-md transition">
+        <div class="bg-gray-200 p-6 rounded-lg drop-shadow-xl fade-up-500 hover:shadow-md transition">
           <div class="text-4xl font-bold text-black mb-4">3</div>
-          <h3 class="text-xl font-semibold mb-2">Recover or Return</h3>
-          <p class="text-black">Connect and return the item safely through the campus network.</p>
+          <h3 class="text-3xl font-semibold mb-2 text-orange-500  font-family:'Baloo' ">Recover or Return</h3>
+          <p class="text-black text-2xl font-sans">Connect and return the item safely through the campus network.</p>
         </div>
       </div>
     </div>
   </section>
 
      <!-- reviews section -->
-      <section class=" hover:scale-105 transform transition duration-300
+      <section class=" py-20 text-black text-center px-4 lg:px-0 mx-auto max-w-full mt-10 mb-10 drop-shadow-xl >
 ">
-   <div class=" bg-gradient-to-r from-black to-gray-700 rounded-xl grid grid-cols-1 lg:grid-cols-2 text-white px-7 md:px-16">
+   <div class=" bg-gray-200 grid grid-cols-1 lg:grid-cols-2 text-black px-7 md:px-16">
   <!-- text section -->
   <div class="flex justify-center items-center overflow-hidden">
     <div class="w-5/6">
-      <h1 class="text-5xl font-bold mb-5 mt-10">Meet Our Super Clients</h1>
-      <p class="mb-5">
-      DropPoint has become an essential platform for our students. It helps in quickly recovering lost items and keeps the campus more organized. We’re proud to support it at Metropolitan University
+      <h1 class="text-3xl font-extrabold mb-5 mt-10">Meet Our Super Clients</h1>
+      <p class="mb-5 text-2xl font-family:'Raleway'">
+      DropPoint has become an essential platform for our students.<br> It helps in quickly recovering lost items and keeps the campus more organized.<br> We’re proud to support it at Metropolitan University
       </p>
     </div>
   </div>
@@ -114,17 +130,17 @@
   <div class=" h-56 w-full md:w-3/4 bg-white text-black rounded-lg flex items-center px-5">
     <!-- image text -->
      <div>
-       <p class="text-gray-500 mb-5">
+       <p class="text-gray-500 mb-5 text-xl">
          I once lost my ID card and found it within a day using DropPoint. This platform really helps students feel safe and connected.
        </p>
-       <h1 class="font-bold">Samia Jahan</h1>
+       <h1 class="font-bold text-2xl">Samia Jahan</h1>
        <small class="font-bold text-gray-500">59th Batch Student</small>
      </div>
    </div>
 </div>
 
       <!-- top card -->
-       <div class=" left-8 md:left-32  opacity-40 relative h-56 w-full md:w-3/4 bg-white text-black rounded-lg flex items-center px-5">
+       <div class=" left-8 md:left-32 drop-shadow-xl  opacity-40 relative h-56 w-full md:w-3/4 bg-white text-black rounded-lg flex items-center px-5">
          <!-- image text -->
           <div>
             <p class="text-gray-500 mb-5">
@@ -144,20 +160,57 @@
             An innovative project by CSE students. It proves how small ideas can solve real problems on campus. Highly recommended!
           </p>
           <h1 class="font-bold">Nishat Tasnim</h1>
-          <small class="font-bold text-gray-500">58th</small>
+          <small class="font-bold text-gray-500">58th Batch Student</small>
         </div>
       </div>
     </div>
    </div>
   </section> 
+  <!-- Meet Our Team Section -->
+<section class="py-12 bg-white gap-8">
+  <div class=" pl-6 py-4 mx-auto text-center">
+    <h2 class="text-5xl font-extrabold mb-10 text-gray-800 drop-shadow-xl rounded">Meet Our Team</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-8">
+      
+      <!-- Team Member -->
+      <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all duration-700">
+        <img src="Picures/niha.jpg" alt="Niha" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-gray-300 shadow-md">
+        <h3 class="mt-4 font-semibold text-2xl text-gray-900">Niha</h3>
+        <p class="text-gray-500 text-xl">ID: 231-115-006</p>
+      </div>
+
+      <!-- Team Member -->
+      <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all duration-500">
+        <img src="Picures/anisa.jpg" alt="Anisa" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-gray-300 shadow-md">
+        <h3 class="mt-4 font-semibold text-2xl text-gray-900">Anisa</h3>
+        <p class="text-gray-500 text-xl">ID: 231-115-024</p>
+      </div>
+
+      <!-- Team Member -->
+      <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all duration-500">
+        <img src="Picures/bushra.jpg" alt="Bushra" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-gray-300 shadow-md">
+        <h3 class="mt-4 font-semibold text-2xl text-gray-900">Bushra</h3>
+        <p class="text-gray-500 text-xl">ID: 231-115-005</p>
+      </div>
+
+      <!-- Team Member -->
+      <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-xl transition-all duration-500">
+        <img src="Picures/fatima.jpg" alt="Fatima" class="w-28 h-28 mx-auto rounded-full object-cover border-4 border-gray-300 shadow-md">
+        <h3 class="mt-4 font-semibold text-2xl text-gray-900">Fatima</h3>
+        <p class="text-gray-500 text-xl">ID: 231-115-034</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 text-black py-10 mt-10 fade-up">
+  <footer class="bg-gray-50 text-black py-10 mt-10">
   <div class="max-w-7xl mx-auto px-6 text-center">
-    <h1 class="text-2xl font-bold mb-4">DropPoint</h1>
-    <p class="mb-6">An initiative by Metropolitan University students to make campus life easier and more organized. Report lost items, find what others found — all in one place.</p>
-    <a href="login.html" class="inline-block text-white bg-black px-6 py-2 rounded hover:bg-gray-800 transition">
-      Get Started
+    <h1 class="text-4xl font-bold mb-4">DropPoint</h1>
+    <p class="mb-6 text-xl">An initiative by Metropolitan University students to make campus life easier and more organized. Report lost items, find what others found — all in one place.</p>
+    <a href="register.html" class="inline-block text-black font-bold bg-orange-500 px-6 py-2 rounded hover:text-xl hover:bg-gray-30 transition">
+      Sign Up
     </a>
     <p class="text-sm mt-6 text-gray-500">© 2025 DropPoint | Built for Metropolitan University</p>
   </div>
@@ -175,6 +228,9 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>

@@ -22,6 +22,11 @@ $user = $stmt->get_result()->fetch_assoc();
 <body class="bg-gray-100">
 <nav class="bg-white shadow p-4 flex justify-between">
  <a href="dashboard.php" class="text-2xl font-bold italic bg-black-100  text-black px-4 py-2 rounded-full shadow font-sans">DropPoint</a>
+ <a href="logout.php" 
+           class="bg-red-500 hover:bg-black hover:text-white text-white px-4 py-2 rounded-full transition">
+           Logout
+        </a>
+
 </nav>
 
 <div class="max-w-2xl mx-auto mt-10 bg-white p-6 rounded shadow">
@@ -46,12 +51,12 @@ $user = $stmt->get_result()->fetch_assoc();
   </div>
 
   <div class="mt-6 flex justify-center">
-    <a href="update_profile.php" class="bg-black text-white px-4 py-2 rounded">Edit Profile</a>
+    <a href="update_profile.php" class="bg-orange-500 font-bold text-black hover:bg-black hover:text-white px-4 py-2 rounded">Edit Profile</a>
   </div>
 
   <hr class="my-6">
 
-  <h3 class="font-semibold mb-3">My Posts</h3>
+  <h3 class="font-semibold text-xl mb-3">My Posts</h3>
   <?php
   $pst = $conn->prepare("SELECT * FROM posts WHERE user_id = ? ORDER BY created_at DESC");
   $pst->bind_param("i", $user_id);
