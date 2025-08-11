@@ -4,10 +4,21 @@ Group Members & Contributions
 
 Name	Student ID	Contribution
 
-Anisa Binte Faruk- 231-115-024	(Lead UI/Frontend design — full landing page design, theme & color scheme selection, hover effects, responsive layouts, TailwindCSS integration, visual polish, and user experience improvements.)
+Anisa Binte Faruk- 231-115-024
 
-Mahiya Akter Niha- 231-115-006	(Database design & management — complete ER diagram creation, MySQL database setup, table creation, relationships, and optimization of database queries.) Bushra Hossain Rema- 231-115-005	(Backend development — PHP scripts for user authentication, login/logout, session handling, and integration with database queries.)
-Fatima	231-115-034	(Backend development — PHP scripts for user registration, forgot/reset password functionality, and dashboard backend logic.)
+(Lead UI/Frontend design — full landing page design, theme & color scheme selection, hover effects, responsive layouts, TailwindCSS integration, visual polish, and user experience improvements.)
+
+Mahiya Akter Niha- 231-115-006
+
+(Database design & management — complete ER diagram creation, MySQL database setup, table creation, relationships, and optimization of database queries.) 
+
+Bushra Hossain Rema- 231-115-005	
+
+(Backend development — PHP scripts for user authentication, login/logout, session handling, and integration with database queries.)
+
+Fatima Akter- 231-115-034	
+
+(Backend development — PHP scripts for user registration, forgot/reset password functionality, and dashboard backend logic.)
 
 
 
