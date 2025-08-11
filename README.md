@@ -6,19 +6,19 @@ Name	Student ID	Contribution
 
 Anisa Binte Faruk- 231-115-024
 
-(Lead UI/Frontend design — full landing page design, theme & color scheme selection, hover effects, responsive layouts, TailwindCSS integration, visual polish, and user experience improvements.)
+(Post Creation form, database setup, Landing page UI design )
 
 Mahiya Akter Niha- 231-115-006
 
-(Database design & management — complete ER diagram creation, MySQL database setup, table creation, relationships, and optimization of database queries.) 
+(Commenting, deleting comments, Dashboard UI design.) 
 
 Bushra Hossain Rema- 231-115-005	
 
-(Backend development — PHP scripts for user authentication, login/logout, session handling, and integration with database queries.)
+(Login and Registration part,  UI design. )
 
 Fatima Akter- 231-115-034	
 
-(Backend development — PHP scripts for user registration, forgot/reset password functionality, and dashboard backend logic.)
+(Editing Profile Part and Profile UI design )
 
 
 
@@ -71,8 +71,7 @@ Proper normalization for data integrity
 
 ER Diagram- link
 
-https://drive.google.com/file/d/1aYULzcmGKLXOA5xnCC8J-CKU8xdrNcVB/view?usp=drivesdk
-
+https://drive.google.com/file/d/14CRx4UpZdC14zn7XBPFxrZ5NQtZfZ9Bl/view?usp=drivesdk
 
 ---
 
