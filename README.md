@@ -18,7 +18,7 @@ Bushra Hossain Rema- 231-115-005
 
 Fatima Akter- 231-115-034	
 
-(Editing Profile Part and Profile UI design )
+(Editing Profile Part and Profile UI design, also helped to design the landing page  )
 
 
 
