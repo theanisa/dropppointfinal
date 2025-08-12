@@ -79,6 +79,8 @@ Video Demonstration
 
 📹 Watch Project Video (link)
 
+https://drive.google.com/file/d/1YXR0UHXdTgk6_mx1B5QM0orgBSFC_vkr/view?usp=drivesdk
+
 The video covers:
 
 All functionalities demonstration
