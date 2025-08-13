@@ -91,7 +91,10 @@ Backend logic explanation
 
 Database structure & queries overview
 
+Optional Preview Video (No Explanation)
+This is an additional, optional video showing only the visual interface and flow of our project, without narration or detailed explanation. It is included so you can quickly experience the look and feel of the website.
 
+link: https://drive.google.com/file/d/1Vnrbd7BauMueJeOKn4hQNVWZEuSXp8Dr/view?usp=drivesdk
 
 ---
 
