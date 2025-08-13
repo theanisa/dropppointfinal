@@ -79,7 +79,7 @@ Video Demonstration
 
 📹 Watch Project Video (link)
 
-https://drive.google.com/file/d/1YXR0UHXdTgk6_mx1B5QM0orgBSFC_vkr/view?usp=drivesdk
+https://drive.google.com/file/d/15vWg6f-AhEZN3uUH5haKmHlImP9oDo7l/view?usp=drivesdk (explained video link)
 
 The video covers:
 
