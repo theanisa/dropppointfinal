@@ -4,10 +4,21 @@ Group Members & Contributions
 
 Name	Student ID	Contribution
 
-Anisa Binte Faruk	231-115-024	Landing page UI design, overall UI polishing, post creation form, database setup
-Mahiya Akter Niha	231-115-006	Commenting system, deleting comments, dashboard UI adjustments
-Bushra Hossain Rema	231-115-005	Login & registration functionality, UI design
-Fatima Akter	231-115-034	Profile editing feature & profile UI design, assisted in landing page design
+Anisa Binte Faruk	231-115-024	
+
+Landing page UI design, overall UI polishing, post creation form, database setup
+
+Mahiya Akter Niha	231-115-006	
+
+Commenting system, deleting comments, dashboard UI adjustments
+
+Bushra Hossain Rema	231-115-005	
+
+Login & registration functionality, UI design
+
+Fatima Akter	231-115-034	Profile 
+
+editing feature & profile UI design, assisted in landing page design
 
 
 
