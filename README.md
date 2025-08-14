@@ -1,24 +1,13 @@
-DropPoint – Student Resource Management System
+DropPoint – Student Lost & Found Tracking System
 
 Group Members & Contributions
 
 Name	Student ID	Contribution
 
-Anisa Binte Faruk- 231-115-024
-
-(Post Creation form, database setup, Landing page UI design )
-
-Mahiya Akter Niha- 231-115-006
-
-(Commenting, deleting comments, Dashboard UI design.) 
-
-Bushra Hossain Rema- 231-115-005	
-
-(Login and Registration part,  UI design. )
-
-Fatima Akter- 231-115-034	
-
-(Editing Profile Part and Profile UI design, also helped to design the landing page  )
+Anisa Binte Faruk	231-115-024	Landing page UI design, overall UI polishing, post creation form, database setup
+Mahiya Akter Niha	231-115-006	Commenting system, deleting comments, dashboard UI adjustments
+Bushra Hossain Rema	231-115-005	Login & registration functionality, UI design
+Fatima Akter	231-115-034	Profile editing feature & profile UI design, assisted in landing page design
 
 
 
@@ -26,7 +15,8 @@ Fatima Akter- 231-115-034
 
 Objective
 
-The objective of DropPoint is to create a platform where students can easily register, log in, and manage their academic resources. The system ensures secure access to student-specific data, a user-friendly interface, and a well-structured database to handle information efficiently.
+DropPoint is a Lost & Found tracking platform designed specifically for students.
+Its goal is to make it easier for students to report lost items, post found items, and connect with the rightful owners—all within a secure, user-friendly environment.
 
 
 ---
@@ -35,35 +25,44 @@ Functionalities Implemented
 
 Frontend
 
-Fully responsive landing page using TailwindCSS
+Fully responsive landing page built with TailwindCSS
 
-Clean and modern theme with black, gray, and white as the primary colors
+Clean, modern theme (black, gray, and white as primary colors)
 
-Hover effects on buttons and interactive elements
+Gradient hover effects on buttons and interactive elements
 
-Easy navigation between pages (Login, Register, Dashboard)
+Navigation between key pages: Login, Register, Dashboard
 
 
 Backend
 
-User registration with validation
+User registration with form validation
 
-Login authentication with secure session handling
+Secure login authentication with PHP sessions
 
-Forgot Password & Reset Password via unique tokens
+Forgot Password & Reset Password via unique token system
 
-Dashboard with personalized student details
+Dashboard to view lost/found posts and manage personal activity
+
+
+Lost & Found Features
+
+Post creation form for lost/found items
+
+Commenting system for each post to communicate with the finder/owner
+
+Ability to delete own comments/posts
 
 
 Database
 
-MySQL database for storing user data
+MySQL database to store users, posts, and comments
 
-ER diagram for clear database relationships
+ER diagram for clear representation of relationships
 
-Optimized queries for performance
+Optimized queries for faster retrieval
 
-Proper normalization for data integrity
+Proper normalization for consistency and integrity
 
 
 
