@@ -1,0 +1,28 @@
+import nodemailer from 'nodemailer';
+
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT) || 587,
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
+});
+
+export const sendMail = async ({ to, subject, html, text }) => {
+  if (!process.env.SMTP_HOST) {
+    console.warn('SMTP is not configured. Skipping email send.');
+    return;
+  }
+
+  const msg = {
+    from: process.env.EMAIL_FROM || `DropPoint <no-reply@localhost>`,
+    to,
+    subject,
+    html,
+    text,
+  };
+
+  await transporter.sendMail(msg);
+};

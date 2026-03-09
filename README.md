@@ -12,24 +12,22 @@ Functionalities Implemented
 
 Frontend
 
-Fully responsive landing page built with TailwindCSS
-
-Clean, modern theme (black, gray, and white as primary colors)
-
-Gradient hover effects on buttons and interactive elements
-
-Navigation between key pages: Login, Register, Dashboard
+- React + Vite with TailwindCSS styling
+- Login / Register / Dashboard / Profile / Admin pages
+- Client-side routing with React Router
+- API integration via Axios with JWT auth
+- Real-time updates via Socket.IO (new posts/comments update immediately)
+- Responsive UI for mobile and desktop
 
 
 Backend
 
-User registration with form validation
-
-Secure login authentication with PHP sessions
-
-Forgot Password & Reset Password via unique token system
-
-Dashboard to view lost/found posts and manage personal activity
+- Node.js + Express API with MongoDB (Mongoose)
+- JWT authentication (login, register)
+- Fixed admin account via environment variable (ADMIN_STUDENT_ID)
+- Forgot password / reset via email token (SMTP settings in `.env`)
+- Post CRUD endpoints with file upload support
+- Comments + claim/unclaim logic
 
 
 Lost & Found Features
@@ -86,35 +84,70 @@ link: https://drive.google.com/file/d/1Vnrbd7BauMueJeOKn4hQNVWZEuSXp8Dr/view?usp
 
 Tech Stack
 
-Frontend: HTML, CSS (TailwindCSS)
+Frontend: React + Tailwind CSS
 
-Backend: PHP
+Backend: Node.js, Express, MongoDB
 
-Database: MySQL (MariaDB via XAMPP)
+Database: MongoDB
 
-Version Control: Git & GitHub 
+Version Control: Git & GitHub
 
 ---
-How to Run Locally
+How to Run Locally (MERN)
 
-1. Install XAMPP
+1. Install Node.js (v18+ recommended) and MongoDB.
+
+2. Open a terminal and install backend dependencies:
+
+   cd backend && npm install
+
+3. Start the backend API:
+
+   cd backend && npm run dev
+
+   Backend will run on http://localhost:5000 by default.
+
+4. In a second terminal, install frontend dependencies and start the React app:
+
+   cd frontend && npm install
+   cd frontend && npm run dev
+
+   Frontend will run on http://localhost:5173 by default.
+
+5. Open the frontend URL in your browser and sign up / sign in.
 
 
-2. Clone the repository into your htdocs folder
+Environment configuration
+
+- Backend uses `backend/.env` for configuration.
+  - Set `MONGO_URI`, `JWT_SECRET`, and `ADMIN_STUDENT_ID` (your Student ID for admin access).
+  - To enable password reset email, set SMTP variables: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`, and `EMAIL_FROM`.
+  - `FRONTEND_URL` should match the URL where the React app runs (default: `http://localhost:5173`).
+- Frontend uses `frontend/.env` (`VITE_API_URL`) to point at the backend API.
 
 
-3. Start Apache & MySQL from XAMPP Control Panel
+Deployment (making it live)
 
+1) **Host the backend**
+   - Use a service like **Render**, **Heroku**, **Railway**, or **DigitalOcean App Platform**.
+   - Set environment variables from `backend/.env` (Mongo URI, JWT secret, admin ID, SMTP settings).
+   - Ensure the backend URL is served over HTTPS.
 
-4. Import the database from /database/droppoint.sql into phpMyAdmin
+2) **Host the frontend**
+   - Use **Vercel**, **Netlify**, or **Cloudflare Pages**.
+   - Point `VITE_API_URL` to your deployed backend URL (e.g., `https://api.example.com/api`).
 
+3) **MongoDB**
+   - Use **MongoDB Atlas** (free tier) for production storage.
+   - Update `MONGO_URI` accordingly.
 
-5. Open the project in your browser:
+4) **Email (optional, for password reset)**
+   - Use a transactional email provider (SendGrid, Mailgun, SMTP from your hosting).
+   - Configure SMTP variables in the backend environment.
 
-http://localhost/droppointfinal/index.html
-
-
-
+5) **Real-time updates**
+   - The app uses Socket.IO for real-time updates.
+   - Ensure the backend host allows WebSocket connections and the frontend is configured with the correct backend URL.
 
 ---
 
