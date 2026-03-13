@@ -1,42 +1,68 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* DropPoint Professional Theme - Orange/Gray */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --orange-primary: #f97316;
+  --gray-bg: #f8fafc;
+  --black-primary: #000000;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+* {
+  @apply border-gray-300 text-gray-900 leading-relaxed;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  @apply bg-gray-100 antialiased font-sans;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.container {
+  @apply max-w-8xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
 .card {
-  padding: 2em;
+  @apply bg-white rounded-xl shadow-lg hover:shadow-2xl p-6 transition-all border border-gray-200 hover:border-orange-200;
 }
 
-.read-the-docs {
-  color: #888;
+.btn-primary {
+  @apply bg-gradient-to-r from-orange-500 to-gray-900 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200;
+}
+
+.btn-secondary {
+  @apply bg-orange-500 text-black font-bold px-6 py-2 rounded-full shadow-lg hover:bg-black hover:text-white transition-all duration-200;
+}
+
+.btn-danger {
+  @apply bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-xl transition-all;
+}
+
+.profile-avatar {
+  @apply relative w-32 h-32 rounded-full object-cover border-4 border-gray-800 shadow-2xl;
+}
+
+.profile-avatar::after {
+  content: 'User';
+  @apply absolute -bottom-2 -right-2 bg-gray-900 text-white text-xs px-3 py-1 rounded-full shadow-lg font-semibold;
+}
+
+.avatar-sidebar {
+  @apply w-24 h-24 rounded-full object-cover border-4 border-orange-500 shadow-xl;
+}
+
+.post-card {
+  @apply card hover:-translate-y-1 hover:border-orange-400;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 bg-clip-text text-transparent font-bold;
+}
+
+@media (max-width: 768px) {
+  .container { @apply max-w-full px-4; }
+  .flex-col-reverse { @apply flex-col-reverse; }
+}
+
+@media (min-width: 1024px) {
+  .lg\\:grid-cols-3 { @apply grid-cols-3; }
 }

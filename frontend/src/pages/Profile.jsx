@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { updateProfile } from '../api/auth';
+import { fetchMyPosts, toggleClaim, deletePost } from '../api/posts';
 
 export default function Profile() {
-  const { user, setUser, logout } = useAuth();
+  const { user, setUser } = useAuth();
   const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('info');
   const [form, setForm] = useState({
     fullName: user?.fullName || '',
     email: user?.email || '',
@@ -15,6 +17,23 @@ export default function Profile() {
   });
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
+  const [myPosts, setMyPosts] = useState([]);
+  const [loadingPosts, setLoadingPosts] = useState(true);
+
+  const loadMyPosts = async () => {
+    try {
+      const { posts } = await fetchMyPosts();
+      setMyPosts(posts);
+    } catch (err) {
+      console.error('Failed to load posts', err);
+    } finally {
+      setLoadingPosts(false);
+    }
+  };
+
+  useEffect(() => {
+    loadMyPosts();
+  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -31,99 +50,221 @@ export default function Profile() {
 
       const { user: updated } = await updateProfile(data);
       setUser(updated);
-      setMessage('Profile updated successfully');
+      setMessage('Profile updated!');
+      setActiveTab('posts');
     } catch (err) {
       setError(err?.response?.data?.message || 'Update failed');
     }
   };
 
-  return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold">Edit Profile</div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => navigate('/')}
-              className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
-            >
-              Dashboard
-            </button>
-            <button
-              onClick={() => {
-                logout();
-                navigate('/login');
-              }}
-              className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300"
-            >
-              Sign out
-            </button>
-          </div>
-        </div>
-      </header>
+  const handleClaim = async (postId) => {
+    try {
+      await toggleClaim(postId);
+      loadMyPosts();
+    } catch (err) {
+      setError(err?.response?.data?.message || 'Failed');
+    }
+  };
 
-      <main className="max-w-3xl mx-auto px-4 py-8">
-        {message && <div className="text-green-600 mb-4">{message}</div>}
-        {error && <div className="text-red-600 mb-4">{error}</div>}
-        <div className="bg-white p-6 rounded shadow">
-          <form onSubmit={onSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <label className="block">
-                <span className="text-sm font-semibold">Full name</span>
-                <input
-                  value={form.fullName}
-                  onChange={(e) => setForm((f) => ({ ...f, fullName: e.target.value }))}
-                  required
-                  className="mt-1 w-full border rounded px-3 py-2"
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-semibold">Email</span>
-                <input
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                  className="mt-1 w-full border rounded px-3 py-2"
-                />
-              </label>
+  const handleDelete = async (postId) => {
+    if (!window.confirm('Delete post?')) return;
+    try {
+      await deletePost(postId);
+      loadMyPosts();
+    } catch (err) {
+      setError(err?.response?.data?.message || 'Failed');
+    }
+  };
+
+  if (!user) return null;
+
+  return (
+    <div className="min-h-screen bg-gray-100 py-8">
+      <div className="container">
+        <div className="max-w-2xl mx-auto mb-8">
+          {/* Profile Header - PHP style */}
+          <div className="card flex flex-col items-center text-center">
+            <div className="profile-avatar bg-gradient-to-br from-orange-500 to-gray-800 flex items-center justify-center text-4xl font-bold text-white">
+              {user.profileImage ? (
+                <img src={`http://localhost:5000${user.profileImage}`} alt="Profile" className="profile-avatar" />
+              ) : (
+                user.fullName.slice(0, 1).toUpperCase()
+              )}
+            </div>
+            <h1 className="mt-6 text-3xl font-extrabold text-gray-900">{user.fullName}</h1>
+            <p className="text-gray-500 font-medium text-lg mt-1">Student ID: {user.studentId}</p>
+            
+            <div className="mt-6 space-y-2 text-gray-700">
+              <p><strong>Email:</strong> {user.email}</p>
+              <p><strong>Contact:</strong> {user.contact || 'Not set'}</p>
+              <p><strong>Role:</strong> <span className={`px-3 py-1 rounded-full text-sm font-bold ${user.role === 'admin' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>{user.role.toUpperCase()}</span></p>
             </div>
 
-            <label className="block">
-              <span className="text-sm font-semibold">Contact (optional)</span>
-              <input
-                value={form.contact}
-                onChange={(e) => setForm((f) => ({ ...f, contact: e.target.value }))}
-                className="mt-1 w-full border rounded px-3 py-2"
-              />
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-semibold">New password (optional)</span>
-              <input
-                type="password"
-                value={form.password}
-                onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
-                className="mt-1 w-full border rounded px-3 py-2"
-                placeholder="Leave blank to keep current password"
-              />
-            </label>
-
-            <label className="block">
-              <span className="text-sm font-semibold">Profile image</span>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setForm((f) => ({ ...f, profileImage: e.target.files?.[0] }))}
-                className="mt-1 w-full"
-              />
-            </label>
-
-            <button className="bg-orange-500 text-black px-4 py-2 rounded hover:bg-black hover:text-white">
-              Save
-            </button>
-          </form>
+            <div className="mt-8">
+              <button 
+                onClick={() => setActiveTab('edit')}
+                className="btn-secondary mr-4"
+              >
+                Edit Profile
+              </button>
+              <button 
+                onClick={() => navigate('/dashboard')}
+                className="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition"
+              >
+                View Dashboard
+              </button>
+            </div>
+          </div>
         </div>
-      </main>
+
+        {/* Tabs */}
+        <div className="flex border-b border-gray-200 mb-6">
+          <button 
+            onClick={() => setActiveTab('posts')}
+            className={`pb-4 px-6 font-bold ${activeTab === 'posts' ? 'border-orange-500 border-b-4 text-orange-500' : 'text-gray-600 hover:text-gray-900'}`}
+          >
+            My Posts ({myPosts.length})
+          </button>
+          {activeTab === 'edit' && (
+            <button 
+              onClick={() => setActiveTab('posts')}
+              className="pb-4 px-6 font-bold text-gray-600 hover:text-gray-900"
+            >
+              ← Back to Posts
+            </button>
+          )}
+        </div>
+
+        {message && <div className="bg-green-100 border border-green-400 text-green-800 px-4 py-3 rounded-lg mb-6">{message}</div>}
+        {error && <div className="bg-red-100 border border-red-400 text-red-800 px-4 py-3 rounded-lg mb-6">{error}</div>}
+
+        {/* Edit Form */}
+        {activeTab === 'edit' && (
+          <div className="card">
+            <h2 className="text-2xl font-bold mb-6 gradient-text">Edit Profile</h2>
+            <form onSubmit={onSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-bold mb-2">Full Name</label>
+                  <input
+                    value={form.fullName}
+                    onChange={(e) => setForm((f) => ({ ...f, fullName: e.target.value }))}
+                    required
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold mb-2">Email</label>
+                  <input
+                    type="email"
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold mb-2">Contact (optional)</label>
+                <input
+                  value={form.contact}
+                  onChange={(e) => setForm((f) => ({ ...f, contact: e.target.value }))}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold mb-2">New Password (optional)</label>
+                <input
+                  type="password"
+                  value={form.password}
+                  onChange={(e) => setForm((f) => ({ ...f, password: e.target.value }))}
+                  placeholder="Leave blank to keep current"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold mb-2">Profile Image</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setForm((f) => ({ ...f, profileImage: e.target.files?.[0] }))}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-8 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100"
+                />
+              </div>
+
+              <div className="flex gap-4">
+                <button type="submit" className="btn-primary flex-1">
+                  Save Changes
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => setActiveTab('posts')}
+                  className="px-6 py-3 border border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition flex-1"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {/* My Posts */}
+        {activeTab === 'posts' && (
+          <div className="space-y-6">
+            <div className="card">
+              <h2 className="text-2xl font-bold mb-4 gradient-text">My Posts</h2>
+              {loadingPosts ? (
+                <div className="text-gray-600 text-center py-12">Loading posts...</div>
+              ) : myPosts.length === 0 ? (
+                <div className="text-center py-12 text-gray-500">
+                  <div className="text-4xl mb-4">📝</div>
+                  You haven't posted yet. <a href="/dashboard" className="text-orange-500 hover:underline font-semibold">Create one now →</a>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {myPosts.map((post) => (
+                    <div key={post._id} className="post-card">
+                      <div className="flex justify-between items-start mb-3">
+                        <span className={`px-3 py-1 rounded-full text-sm font-bold ${post.isClaimed ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                          {post.isClaimed ? 'Claimed' : 'Active'}
+                        </span>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => handleClaim(post._id)}
+                            className="bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-semibold hover:bg-yellow-600"
+                          >
+                            {post.isClaimed ? 'Unclaim' : 'Mark Claimed'}
+                          </button>
+                          <button
+                            onClick={() => handleDelete(post._id)}
+                            className="btn-danger px-4 py-1 text-sm"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                      {post.title && <h3 className="font-bold text-xl mb-3">{post.title}</h3>}
+                      <p className="text-gray-700 mb-4 line-clamp-3">{post.description}</p>
+                      {post.image && (
+                        <img 
+                          src={`http://localhost:5000${post.image}`} 
+                          alt="Post" 
+                          className="w-full h-48 object-cover rounded-lg mb-4 shadow-md"
+                        />
+                      )}
+                      <div className="text-sm text-gray-500">
+                        📍 {post.location || 'No location'} • {new Date(post.createdAt).toLocaleDateString()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

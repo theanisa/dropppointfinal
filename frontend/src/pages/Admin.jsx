@@ -84,6 +84,13 @@ export default function Admin() {
                     <div className="font-semibold">{post.title || 'No title'}</div>
                     <div className="text-sm text-gray-600">{post.postType}</div>
                     <div className="text-xs text-gray-500">{new Date(post.createdAt).toLocaleString()}</div>
+                    {post.image && (
+                      <img 
+                        src={`http://localhost:5000${post.image}`} 
+                        alt="post" 
+                        className="mt-2 w-full max-h-40 object-cover rounded" 
+                      />
+                    )}
                   </div>
                   <button
                     onClick={() => handleDelete(post._id)}

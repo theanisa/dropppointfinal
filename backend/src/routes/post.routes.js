@@ -196,4 +196,21 @@ router.get('/admin/all', authenticate, requireAdmin, async (req, res) => {
   }
 });
 
+// Get current user's posts
+router.get('/my-posts', authenticate, async (req, res) => {
+  try {
+    const posts = await Post.find({ user: req.user._id })
+      .populate('user', 'fullName')
+      .populate({
+        path: 'comments',
+        populate: { path: 'user', select: 'fullName' },
+      })
+      .sort({ createdAt: -1 });
+    res.json({ posts });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 export default router;

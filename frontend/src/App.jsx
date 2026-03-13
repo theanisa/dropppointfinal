@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import Admin from './pages/Admin';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Landing from './pages/Landing';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function AppRoutes() {
@@ -16,24 +17,37 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      {/* Landing page - only for guests */}
+      <Route path="/" element={!user ? <Landing /> : <Navigate to="/dashboard" replace />} />
+      <Route path="/landing" element={!user ? <Landing /> : <Navigate to="/dashboard" replace />} />
+      
+      {/* Protected routes - require login */}
+      <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+      
+      {/* Public routes */}
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-      <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
+      <Route path="/login" element={user ? <Navigate to="/dashboard" /> : <Login />} />
+      <Route path="/register" element={user ? <Navigate to="/dashboard" /> : <Register />} />
+      
+      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
 
+import Navbar from './components/Navbar';
+
 export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <Navbar />
         <AppRoutes />
       </AuthProvider>
     </BrowserRouter>
   );
 }
+

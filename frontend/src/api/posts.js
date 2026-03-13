@@ -36,3 +36,8 @@ export const fetchAllPosts = async () => {
   const res = await api.get('/posts/admin/all');
   return res.data;
 };
+
+export const fetchMyPosts = async () => {
+  const res = await api.get('/posts/my-posts');
+  return res.data;
+};
