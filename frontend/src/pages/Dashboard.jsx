@@ -119,169 +119,214 @@ export default function Dashboard() {
   const canAdmin = useMemo(() => user?.role === 'admin', [user]);
 
   return (
-    <div className="py-8 space-y-6">
-      {/* Stories Bar */}
-      <div className="flex gap-4 overflow-x-auto pb-4 -mb-4 scrollbar-hide">
-        <div className="flex flex-col items-center min-w-[70px] cursor-pointer group">
-          <div className="w-16 h-16 bg-gradient-to-br from-orange-primary to-orange-600 rounded-full border-3 border-white shadow-fb group-hover:shadow-fb-elevated p-1 transition-all">
-            <div className="w-full h-full bg-white rounded-full flex items-center justify-center text-lg font-bold text-orange-primary">
-              +
+    <>
+      <div className="bento-grid gap-8 max-w-7xl mx-auto">
+        {/* Quick Actions */}
+        <div className="bento-xl glass-card">
+          <div className="flex items-center gap-6 h-full">
+            <div className="p-8 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-3xl backdrop-blur-md">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-2xl font-bold text-white shadow-2xl">
+                {user?.fullName?.slice(0,1)?.toUpperCase() || 'U'}
+              </div>
+            </div>
+            <div className="flex-1">
+              <button 
+                onClick={() => setShowForm(!showForm)}
+                className="btn-primary w-full h-16 text-lg font-[Inter] mb-4"
+              >
+                + What's Lost or Found Today?
+              </button>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="glass-card p-4 text-center hover:shadow-md transition-all rounded-2xl">
+                  <div className="text-3xl mb-2">🔍</div>
+                  <div className="text-sm font-[Inter]">Lost Items</div>
+                  <span className="text-2xl font-bold text-indigo-600">23</span>
+                </div>
+                <div className="glass-card p-4 text-center hover:shadow-md transition-all rounded-2xl">
+                  <div className="text-3xl mb-2">✅</div>
+                  <div className="text-sm font-[Inter]">Found Items</div>
+                  <span className="text-2xl font-bold text-emerald-600">15</span>
+                </div>
+              </div>
             </div>
           </div>
-          <span className="text-xs text-center mt-1 text-gray-600 group-hover:text-gray-900">Create Story</span>
         </div>
-        <div className="flex flex-col items-center min-w-[70px]">
-          <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full border-3 border-white shadow-fb">
-            <div className="w-12 h-12 rounded-full bg-white m-1.5 flex items-center justify-center text-sm font-bold text-purple-600">
-              J
-            </div>
-          </div>
-          <span className="text-xs text-center mt-1 text-gray-600 truncate max-w-[70px]">John Doe</span>
-        </div>
-      </div>
 
-      {/* Create Post Form */}
-      <div className="fb-card">
-        <div className="flex items-center gap-4 p-4">
-          <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-xl font-bold text-gray-600 flex-shrink-0">
-            {user?.fullName?.slice(0,1) || 'U'}
+        {/* Recent Activity */}
+        <div className="bento-lg glass-card p-8">
+          <h3 className="text-2xl font-black tracking-tight font-[Geist] mb-6 text-slate-900">
+            Recent Activity
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg">
+                ✅
+              </div>
+              <div>
+                <p className="font-semibold text-slate-900 font-[Inter]">Laptop recovered</p>
+                <p className="text-sm text-slate-500 font-[Inter]">2 hours ago</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 hover:bg-slate-100 transition-colors">
+              <div className="w-10 h-10 rounded-xl bg-indigo-500 flex items-center justify-center text-white font-bold text-lg">
+                👤
+              </div>
+              <div>
+                <p className="font-semibold text-slate-900 font-[Inter]">New user joined</p>
+                <p className="text-sm text-slate-500 font-[Inter]">1 day ago</p>
+              </div>
+            </div>
           </div>
-          <button 
-            onClick={() => setShowForm(!showForm)}
-            className="flex-1 fb-btn-secondary justify-start h-12"
-          >
-            What's lost or found?
-          </button>
         </div>
+
+        {/* Search & Filter */}
+        <div className="glass-card p-6 col-span-full">
+          <div className="flex flex-col lg:flex-row gap-4 items-center lg:items-stretch">
+            <div className="flex-1 relative">
+              <input
+                value={filters.search}
+                onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
+                placeholder="🔍 Search posts, locations, items..."
+                className="w-full pl-14 pr-6 py-4 bg-slate-100/60 backdrop-blur-sm border border-slate-200 rounded-3xl focus:ring-4 focus:ring-indigo-500/20 focus:border-transparent transition-all font-[Inter] text-lg placeholder-slate-500 shadow-sm"
+              />
+              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-2xl text-slate-400">🔍</span>
+            </div>
+            <select
+              value={filters.type}
+              onChange={(e) => setFilters((f) => ({ ...f, type: e.target.value }))}
+              className="px-6 py-4 bg-slate-100/60 backdrop-blur-sm border border-slate-200 rounded-3xl focus:ring-4 focus:ring-indigo-500/20 focus:border-transparent font-[Inter] text-lg shadow-sm"
+            >
+              <option>All Posts</option>
+              <option>Lost Only</option>
+              <option>Found Only</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Create Post Form */}
         {showForm && (
-          <form onSubmit={submitPost} className="space-y-4 p-4 border-t border-gray-200">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <select
-                value={form.postType}
-                onChange={(e) => setForm((f) => ({ ...f, postType: e.target.value }))}
+          <div className="bento-xl glass-card p-8 col-span-full lg:col-span-4">
+            <h3 className="text-2xl font-black tracking-tight font-[Geist] mb-8 text-slate-900">
+              Create New Post
+            </h3>
+            <form onSubmit={submitPost} className="space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <select
+                  value={form.postType}
+                  onChange={(e) => setForm((f) => ({ ...f, postType: e.target.value }))}
+                  required
+                  className="w-full p-5 rounded-2xl bg-slate-100/50 backdrop-blur-sm border border-slate-200 focus:ring-4 focus:ring-indigo-500/20 focus:border-transparent transition-all font-[Inter] text-lg shadow-sm"
+                >
+                  <option value="">Select Type</option>
+                  <option value="lost">🔍 Lost Item</option>
+                  <option value="found">✅ Found Item</option>
+                </select>
+                <input
+                  value={form.title}
+                  onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
+                  placeholder="Item title (optional)"
+                  className="w-full p-5 rounded-2xl bg-slate-100/50 backdrop-blur-sm border border-slate-200 focus:ring-4 focus:ring-indigo-500/20 focus:border-transparent transition-all font-[Inter] text-lg shadow-sm"
+                />
+              </div>
+              <textarea
+                value={form.description}
+                onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
+                placeholder="Describe the item, where/when seen, key details..."
                 required
-                className="w-full p-3 border border-gray-300 rounded-fb focus:ring-1 focus:ring-orange-primary focus:border-orange-primary"
-              >
-                <option value="">Select Type</option>
-                <option value="lost">🔍 Lost</option>
-                <option value="found">✅ Found</option>
-              </select>
-              <input
-                value={form.title}
-                onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))}
-                placeholder="Title (optional)"
-                className="w-full p-3 border border-gray-300 rounded-fb focus:ring-1 focus:ring-orange-primary focus:border-orange-primary"
+                rows="4"
+                className="w-full p-5 rounded-2xl bg-slate-100/50 backdrop-blur-sm border border-slate-200 focus:ring-4 focus:ring-indigo-500/20 focus:border-transparent transition-all resize-vertical font-[Inter] text-lg shadow-sm"
               />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <input
+                  value={form.location}
+                  onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))}
+                  placeholder="📍 Location (Library, Cafeteria, etc)"
+                  className="w-full p-5 rounded-2xl bg-slate-100/50 backdrop-blur-sm border border-slate-200 focus:ring-4 focus:ring-indigo-500/20 focus:border-transparent transition-all font-[Inter] text-lg shadow-sm"
+                />
+                <input
+                  type="date"
+                  value={form.itemDate}
+                  onChange={(e) => setForm((f) => ({ ...f, itemDate: e.target.value }))}
+                  className="w-full p-5 rounded-2xl bg-slate-100/50 backdrop-blur-sm border border-slate-200 focus:ring-4 focus:ring-indigo-500/20 focus:border-transparent transition-all font-[Inter] text-lg shadow-sm"
+                />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setForm((f) => ({ ...f, image: e.target.files?.[0] }))}
+                  className="w-full p-5 rounded-2xl bg-slate-100/50 backdrop-blur-sm border border-slate-200 border-dashed file:mr-4 file:py-3 file:px-4 file:rounded-xl file:border-0 file:bg-white file:text-lg file:font-semibold file:text-slate-700 hover:file:bg-slate-50 transition-all shadow-sm cursor-pointer"
+                />
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <button type="submit" className="btn-primary flex-1 h-16 text-xl shadow-xl hover:shadow-2xl font-[Geist]">
+                  📤 Post to Campus
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                  className="btn-secondary h-16 flex items-center justify-center text-xl font-[Geist]"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {/* Error */}
+        {error && (
+          <div className="glass-card p-8 bg-red-50/80 border-2 border-red-200 col-span-full">
+            <div className="flex items-center gap-4 text-red-800">
+              <div className="text-3xl">⚠️</div>
+              <p className="text-lg font-semibold font-[Inter]">{error}</p>
             </div>
-            <textarea
-              value={form.description}
-              onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-              placeholder="Describe the item, location, date..."
-              required
-              rows="3"
-              className="w-full p-3 border border-gray-300 rounded-fb focus:ring-1 focus:ring-orange-primary focus:border-orange-primary resize-none"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <input
-                value={form.location}
-                onChange={(e) => setForm((f) => ({ ...f, location: e.target.value }))}
-                placeholder="📍 Location (e.g. Library, Cafeteria)"
-                className="w-full p-3 border border-gray-300 rounded-fb focus:ring-1 focus:ring-orange-primary focus:border-orange-primary"
+          </div>
+        )}
+
+        {/* Loading */}
+        {loading && (
+          <div className="col-span-full grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1,2,3,4].map((i) => (
+              <div key={i} className="glass-card p-8 animate-pulse">
+                <div className="w-16 h-16 bg-slate-200 rounded-2xl mb-4"></div>
+                <div className="h-6 bg-slate-200 rounded-xl mb-3 w-3/4"></div>
+                <div className="h-4 bg-slate-200 rounded-xl w-1/2 mb-6"></div>
+                <div className="h-64 bg-slate-200 rounded-2xl"></div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Posts Grid */}
+        {!loading && posts.length === 0 ? (
+          <div className="col-span-full text-center py-32">
+            <div className="text-8xl mb-8 opacity-20">📭</div>
+            <h3 className="text-4xl font-black tracking-tight font-[Geist] mb-4 text-slate-700">
+              No posts yet
+            </h3>
+            <p className="text-xl text-slate-600 mb-12 font-[Inter] max-w-md mx-auto">
+              Be the first to post or try different filters
+            </p>
+            <button onClick={() => setShowForm(true)} className="btn-primary px-12 py-6 text-xl shadow-2xl">
+              + Create First Post
+            </button>
+          </div>
+        ) : (
+          <div className="col-span-full grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-6 lg:gap-8">
+            {posts.map((post) => (
+              <PostCard
+                key={post._id}
+                post={post}
+                currentUser={user}
+                onClaim={handleClaim}
+                onDelete={handleDelete}
+                onAddComment={handleAddComment}
+                onDeleteComment={handleDeleteComment}
               />
-              <input
-                type="date"
-                value={form.itemDate}
-                onChange={(e) => setForm((f) => ({ ...f, itemDate: e.target.value }))}
-                className="w-full p-3 border border-gray-300 rounded-fb focus:ring-1 focus:ring-orange-primary focus:border-orange-primary"
-              />
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setForm((f) => ({ ...f, image: e.target.files?.[0] }))}
-                className="w-full p-3 border border-gray-300 rounded-fb file:mr-4 file:py-2 file:px-4 file:rounded-fb file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
-              />
-            </div>
-            <div className="flex gap-3 pt-2">
-              <button type="submit" className="fb-btn-primary flex-1">
-                📤 Post Item
-              </button>
-              <button
-                type="button"
-                onClick={() => setShowForm(false)}
-                className="px-6 py-2 border border-gray-300 rounded-fb font-semibold hover:bg-gray-50 transition flex-shrink-0"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
+            ))}
+          </div>
         )}
       </div>
-
-      {/* Search */}
-      <div className="flex gap-4">
-        <input
-          value={filters.search}
-          onChange={(e) => setFilters((f) => ({ ...f, search: e.target.value }))}
-          placeholder="🔍 Search posts..."
-          className="flex-1 fb-search"
-        />
-        <select
-          value={filters.type}
-          onChange={(e) => setFilters((f) => ({ ...f, type: e.target.value }))}
-          className="px-4 py-2 border border-gray-300 rounded-fb focus:ring-1 focus:ring-orange-primary focus:border-orange-primary"
-        >
-          <option value="">All</option>
-          <option value="lost">Lost</option>
-          <option value="found">Found</option>
-        </select>
-      </div>
-
-      {error && (
-        <div className="fb-card p-4 bg-red-50 border-l-4 border-red-400">
-          <p className="text-red-800 font-semibold">{error}</p>
-        </div>
-      )}
-
-      {loading ? (
-        <div className="space-y-4">
-          <div className="fb-card p-8 text-center animate-pulse">
-            <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4"></div>
-            <div className="h-4 bg-gray-200 rounded w-3/4 mx-auto mb-2"></div>
-            <div className="h-4 bg-gray-200 rounded w-1/2 mx-auto"></div>
-          </div>
-          <div className="fb-card p-6">
-            <div className="h-64 bg-gray-200 rounded-fb mb-4"></div>
-            <div className="space-y-2">
-              <div className="h-4 bg-gray-200 rounded w-full"></div>
-              <div className="h-4 bg-gray-200 rounded w-4/5"></div>
-            </div>
-          </div>
-        </div>
-      ) : posts.length === 0 ? (
-        <div className="text-center py-20">
-          <div className="text-6xl mb-6">📭</div>
-          <h3 className="text-2xl font-bold text-gray-700 mb-2">No posts found</h3>
-          <p className="text-gray-600 mb-8 max-w-md mx-auto">Try adjusting your search or be the first to post!</p>
-          <button onClick={() => setShowForm(true)} className="fb-btn-primary px-8 py-3 text-lg">
-            + Create First Post
-          </button>
-        </div>
-      ) : (
-        <div className="space-y-4">
-          {posts.map((post) => (
-            <PostCard
-              key={post._id}
-              post={post}
-              currentUser={user}
-              onClaim={handleClaim}
-              onDelete={handleDelete}
-              onAddComment={handleAddComment}
-              onDeleteComment={handleDeleteComment}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+    </>
   );
 }
 

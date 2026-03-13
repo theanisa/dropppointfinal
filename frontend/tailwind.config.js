@@ -4,23 +4,47 @@ export default {
   theme: {
     extend: {
       colors: {
-        'orange-primary': '#f97316',
-        'gray-bg': '#f8fafc',
-        'black-primary': '#000000',
+        zinc: {
+          50: '#fdfefe',
+          100: '#f8fafc',
+          200: '#f1f5f9',
+          300: '#e2e8f0',
+          400: '#cbd5e1',
+          500: '#94a3b8',
+          600: '#64748b',
+          700: '#475569',
+          800: '#334155',
+          900: '#1e293b',
+          950: '#0f172a',
+        },
+        slate: {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        geist: ['Geist', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        inter: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
-        'fb': '8px',
-        'fb-lg': '12px',
+        '3xl': '1.5rem',
       },
       boxShadow: {
-        'fb': '0 1px 1px -1px rgb(0 0 0 / 0.1), 0 2px 4px rgb(0 0 0 / 0.1)',
-        'fb-elevated': '0 0 0 1px rgba(0 0 0, 0.05), 0 2px 8px rgba(0 0 0, 0.08)',
+        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+        'glass-hover': '0 8px 32px 0 rgba(31, 38, 135, 0.2)',
+        'lift': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
       },
-      screens: {
-        'fb-desktop': '1024px',
+      backdropBlur: {
+        xs: '4px',
       },
     },
   },

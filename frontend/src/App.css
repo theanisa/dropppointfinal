@@ -1,93 +1,38 @@
-/* DropPoint FB-like Theme - Orange/Gray Enhanced */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --orange-primary: #f97316;
-  --gray-bg: #f8fafc;
-  --black-primary: #000000;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-}
-
-* {
-  @apply border-gray-200 text-gray-900 leading-relaxed;
-}
-
-body {
-  @apply bg-gray-50 antialiased font-sans;
-}
-
-.container {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-.fb-card {
-  @apply bg-white rounded-fb-lg shadow-fb hover:shadow-fb-elevated p-4 md:p-6 border border-gray-200 transition-all duration-200 hover:border-orange-200;
-}
-
-.fb-btn-primary {
-  @apply inline-flex items-center gap-2 bg-orange-primary hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-fb text-sm shadow-fb hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2;
-}
-
-.fb-btn-secondary {
-  @apply inline-flex items-center gap-2 bg-white border border-gray-300 hover:border-gray-400 text-gray-900 font-semibold px-4 py-2 rounded-fb text-sm shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2;
-}
-
-.fb-btn-danger {
-  @apply inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-fb text-sm shadow-fb hover:shadow-md transition-all duration-200;
-}
-
-.fb-navbar {
-  @apply bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50;
-}
-
-.fb-sidebar {
-  @apply bg-white border-r border-gray-200 shadow-fb h-screen sticky top-16 lg:block hidden;
-}
-
-.fb-feed {
-  @apply min-h-screen;
-}
-
-.fb-post-header {
-  @apply flex items-center gap-3 mb-3 pb-3 border-b border-gray-200;
-}
-
-.fb-avatar-small {
-  @apply w-10 h-10 rounded-full object-cover ring-2 ring-gray-200;
-}
-
-.fb-avatar-large {
-  @apply w-20 h-20 rounded-full object-cover ring-4 ring-gray-200;
-}
-
-.fb-reactions {
-  @apply flex items-center gap-6 pt-3 pb-2 border-t border-gray-100;
-}
-
-.fb-search {
-  @apply w-full md:w-80 px-4 py-2 border border-gray-300 rounded-fb focus:ring-2 focus:ring-orange-400 focus:border-transparent;
-}
-
-.profile-cover {
-  @apply h-48 bg-gradient-to-r from-orange-500 to-orange-600 relative rounded-t-2xl overflow-hidden;
-}
-
-.gradient-text {
-  @apply bg-gradient-to-r from-orange-primary via-orange-400 to-yellow-500 bg-clip-text text-transparent font-bold;
-}
-
-@media (max-width: 1024px) {
-  .fb-grid {
-    @apply grid-cols-1;
+/* SaaS Glassmorphism Utilities */
+@layer components {
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 rounded-3xl;
   }
-}
-
-@media (min-width: 1024px) {
-  .fb-grid {
-    @apply grid-cols-[minmax(0,280px)_1fr_minmax(0,350px)] gap-6;
+  
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-indigo-500/20 font-[Inter];
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-slate-200 hover:border-slate-300 text-slate-900 font-semibold px-6 py-3 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-slate-500/20 font-[Inter];
+  }
+  
+  .btn-danger {
+    @apply inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-3 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200;
+  }
+  
+  .bento-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 auto-rows-fr;
+  }
+  
+  .bento-item {
+    @apply glass-card p-8 flex flex-col justify-center;
+  }
+  
+  .bento-xl {
+    @apply col-span-2 row-span-2;
+  }
+  
+  .bento-lg {
+    @apply col-span-2 row-span-1;
   }
 }

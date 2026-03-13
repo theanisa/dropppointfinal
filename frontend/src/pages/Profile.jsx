@@ -79,40 +79,63 @@ export default function Profile() {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
-      <div className="container">
-        <div className="max-w-2xl mx-auto mb-8">
-          {/* Profile Header - PHP style */}
-          <div className="card flex flex-col items-center text-center">
-            <div className="profile-avatar bg-gradient-to-br from-orange-500 to-gray-800 flex items-center justify-center text-4xl font-bold text-white">
-              {user.profileImage ? (
-                <img src={`http://localhost:5000${user.profileImage}`} alt="Profile" className="profile-avatar" />
-              ) : (
-                user.fullName.slice(0, 1).toUpperCase()
-              )}
-            </div>
-            <h1 className="mt-6 text-3xl font-extrabold text-gray-900">{user.fullName}</h1>
-            <p className="text-gray-500 font-medium text-lg mt-1">Student ID: {user.studentId}</p>
-            
-            <div className="mt-6 space-y-2 text-gray-700">
-              <p><strong>Email:</strong> {user.email}</p>
-              <p><strong>Contact:</strong> {user.contact || 'Not set'}</p>
-              <p><strong>Role:</strong> <span className={`px-3 py-1 rounded-full text-sm font-bold ${user.role === 'admin' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>{user.role.toUpperCase()}</span></p>
-            </div>
+<div className="min-h-screen bg-gradient-to-br from-slate-50 to-zinc-50 p-8">
+      <div className="max-w-4xl mx-auto space-y-8">
+        {/* Profile Header */}
+        <div className="glass-card p-12 text-center">
+          <div className="mx-auto mb-8">
+            {user.profileImage ? (
+              <img 
+                src={`http://localhost:5000${user.profileImage}`} 
+                alt="Profile" 
+                className="w-32 h-32 rounded-3xl object-cover shadow-2xl ring-8 ring-slate-100/50 mx-auto mb-6 hover:scale-105 transition-transform"
+              />
+            ) : (
+              <div className="w-32 h-32 rounded-3xl bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 flex items-center justify-center text-4xl font-black text-white shadow-2xl ring-8 ring-slate-100/50 mx-auto mb-6 hover:scale-105 transition-transform">
+                {user.fullName?.slice(0,2)?.toUpperCase() || 'DP'}
+              </div>
+            )}
+          </div>
+          <div className="space-y-2">
+            <h1 className="text-4xl md:text-5xl font-black tracking-tight font-[Geist] bg-gradient-to-r from-slate-900 via-slate-700 to-zinc-900 bg-clip-text text-transparent">
+              {user.fullName}
+            </h1>
+            <p className="text-2xl text-slate-600 font-[Inter] font-semibold">
+              ID: <span className="font-mono bg-slate-200 px-3 py-1 rounded-xl text-slate-800">{user.studentId}</span>
+            </p>
+          </div>
+        </div>
 
-            <div className="mt-8">
-              <button 
-                onClick={() => setActiveTab('edit')}
-                className="btn-secondary mr-4"
-              >
-                Edit Profile
-              </button>
-              <button 
-                onClick={() => navigate('/dashboard')}
-                className="bg-gray-800 text-white px-6 py-2 rounded-lg font-bold hover:bg-black transition"
-              >
-                View Dashboard
-              </button>
+        {/* Stats & Quick Actions */}
+        <div className="bento-grid">
+          <div className="bento-lg glass-card p-8">
+            <h3 className="text-2xl font-black tracking-tight font-[Geist] mb-6 text-slate-900">
+              Account Stats
+            </h3>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <p className="text-slate-600 font-[Inter] text-sm uppercase tracking-wide">Posts</p>
+                <p className="text-4xl font-black text-indigo-600 font-[Geist]">12</p>
+              </div>
+              <div>
+                <p className="text-slate-600 font-[Inter] text-sm uppercase tracking-wide">Claims</p>
+                <p className="text-4xl font-black text-emerald-600 font-[Geist]">5</p>
+              </div>
+            </div>
+          </div>
+          <div className="glass-card p-8 hover:shadow-xl transition-all">
+            <h3 className="text-2xl font-black tracking-tight font-[Geist] mb-6 text-slate-900">
+              Contact Info
+            </h3>
+            <div className="space-y-4 text-lg font-[Inter]">
+              <div className="flex items-center gap-4 p-4 bg-slate-50/50 rounded-2xl">
+                <span className="text-2xl">📧</span>
+                <p className="font-semibold">{user.email}</p>
+              </div>
+              <div className="flex items-center gap-4 p-4 bg-slate-50/50 rounded-2xl">
+                <span className="text-2xl">📞</span>
+                <p className="font-semibold">{user.contact || 'Not set'}</p>
+              </div>
             </div>
           </div>
         </div>
