@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, Outlet } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -9,11 +9,13 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Landing from './pages/Landing';
 import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 
 function AppRoutes() {
   const { user, loading } = useAuth();
 
-  if (loading) return null;
+  if (loading) return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
 
   return (
     <Routes>
@@ -38,16 +40,13 @@ function AppRoutes() {
   );
 }
 
-import Navbar from './components/Navbar';
-
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <Navbar />
+    <AuthProvider>
+      <BrowserRouter>
         <AppRoutes />
-      </AuthProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

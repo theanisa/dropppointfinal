@@ -224,40 +224,14 @@ export default function Profile() {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {myPosts.map((post) => (
-                    <div key={post._id} className="post-card">
-                      <div className="flex justify-between items-start mb-3">
-                        <span className={`px-3 py-1 rounded-full text-sm font-bold ${post.isClaimed ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                          {post.isClaimed ? 'Claimed' : 'Active'}
-                        </span>
-                        <div className="flex gap-2">
-                          <button
-                            onClick={() => handleClaim(post._id)}
-                            className="bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-semibold hover:bg-yellow-600"
-                          >
-                            {post.isClaimed ? 'Unclaim' : 'Mark Claimed'}
-                          </button>
-                          <button
-                            onClick={() => handleDelete(post._id)}
-                            className="btn-danger px-4 py-1 text-sm"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                      {post.title && <h3 className="font-bold text-xl mb-3">{post.title}</h3>}
-                      <p className="text-gray-700 mb-4 line-clamp-3">{post.description}</p>
-                      {post.image && (
-                        <img 
-                          src={`http://localhost:5000${post.image}`} 
-                          alt="Post" 
-                          className="w-full h-48 object-cover rounded-lg mb-4 shadow-md"
-                        />
-                      )}
-                      <div className="text-sm text-gray-500">
-                        📍 {post.location || 'No location'} • {new Date(post.createdAt).toLocaleDateString()}
-                      </div>
-                    </div>
+              {myPosts.map((post) => (
+                    <PostCard
+                      key={post._id}
+                      post={post}
+                      currentUser={user}
+                      onClaim={handleClaim}
+                      onDelete={handleDelete}
+                    />
                   ))}
                 </div>
               )}

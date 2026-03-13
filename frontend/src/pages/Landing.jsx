@@ -46,7 +46,7 @@ export default function Landing() {
 
           {/* RIGHT SIDE: Image */}
           <div className="flex justify-center">
-            <img src="/Picures/image.jpg" alt="Lost item" className="w-full max-w-md rounded-lg" />
+            <img src="/Picures/image.jpg" alt="Lost item" className="w-full max-w-md rounded-lg shadow-2xl" />
           </div>
         </div>
       </section>

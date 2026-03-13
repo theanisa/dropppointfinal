@@ -1,4 +1,4 @@
-/* DropPoint Professional Theme - Orange/Gray */
+/* DropPoint FB-like Theme - Orange/Gray Enhanced */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,62 +7,87 @@
   --orange-primary: #f97316;
   --gray-bg: #f8fafc;
   --black-primary: #000000;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 * {
-  @apply border-gray-300 text-gray-900 leading-relaxed;
+  @apply border-gray-200 text-gray-900 leading-relaxed;
 }
 
 body {
-  @apply bg-gray-100 antialiased font-sans;
+  @apply bg-gray-50 antialiased font-sans;
 }
 
 .container {
-  @apply max-w-8xl mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
-.card {
-  @apply bg-white rounded-xl shadow-lg hover:shadow-2xl p-6 transition-all border border-gray-200 hover:border-orange-200;
+.fb-card {
+  @apply bg-white rounded-fb-lg shadow-fb hover:shadow-fb-elevated p-4 md:p-6 border border-gray-200 transition-all duration-200 hover:border-orange-200;
 }
 
-.btn-primary {
-  @apply bg-gradient-to-r from-orange-500 to-gray-900 text-white font-bold px-6 py-3 rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-200;
+.fb-btn-primary {
+  @apply inline-flex items-center gap-2 bg-orange-primary hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-fb text-sm shadow-fb hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2;
 }
 
-.btn-secondary {
-  @apply bg-orange-500 text-black font-bold px-6 py-2 rounded-full shadow-lg hover:bg-black hover:text-white transition-all duration-200;
+.fb-btn-secondary {
+  @apply inline-flex items-center gap-2 bg-white border border-gray-300 hover:border-gray-400 text-gray-900 font-semibold px-4 py-2 rounded-fb text-sm shadow-sm hover:shadow-md transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2;
 }
 
-.btn-danger {
-  @apply bg-gradient-to-r from-red-500 to-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:shadow-xl transition-all;
+.fb-btn-danger {
+  @apply inline-flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded-fb text-sm shadow-fb hover:shadow-md transition-all duration-200;
 }
 
-.profile-avatar {
-  @apply relative w-32 h-32 rounded-full object-cover border-4 border-gray-800 shadow-2xl;
+.fb-navbar {
+  @apply bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50;
 }
 
-.profile-avatar::after {
-  content: 'User';
-  @apply absolute -bottom-2 -right-2 bg-gray-900 text-white text-xs px-3 py-1 rounded-full shadow-lg font-semibold;
+.fb-sidebar {
+  @apply bg-white border-r border-gray-200 shadow-fb h-screen sticky top-16 lg:block hidden;
 }
 
-.avatar-sidebar {
-  @apply w-24 h-24 rounded-full object-cover border-4 border-orange-500 shadow-xl;
+.fb-feed {
+  @apply min-h-screen;
 }
 
-.post-card {
-  @apply card hover:-translate-y-1 hover:border-orange-400;
+.fb-post-header {
+  @apply flex items-center gap-3 mb-3 pb-3 border-b border-gray-200;
+}
+
+.fb-avatar-small {
+  @apply w-10 h-10 rounded-full object-cover ring-2 ring-gray-200;
+}
+
+.fb-avatar-large {
+  @apply w-20 h-20 rounded-full object-cover ring-4 ring-gray-200;
+}
+
+.fb-reactions {
+  @apply flex items-center gap-6 pt-3 pb-2 border-t border-gray-100;
+}
+
+.fb-search {
+  @apply w-full md:w-80 px-4 py-2 border border-gray-300 rounded-fb focus:ring-2 focus:ring-orange-400 focus:border-transparent;
+}
+
+.profile-cover {
+  @apply h-48 bg-gradient-to-r from-orange-500 to-orange-600 relative rounded-t-2xl overflow-hidden;
 }
 
 .gradient-text {
-  @apply bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 bg-clip-text text-transparent font-bold;
+  @apply bg-gradient-to-r from-orange-primary via-orange-400 to-yellow-500 bg-clip-text text-transparent font-bold;
 }
 
-@media (max-width: 768px) {
-  .container { @apply max-w-full px-4; }
-  .flex-col-reverse { @apply flex-col-reverse; }
+@media (max-width: 1024px) {
+  .fb-grid {
+    @apply grid-cols-1;
+  }
 }
 
 @media (min-width: 1024px) {
-  .lg\\:grid-cols-3 { @apply grid-cols-3; }
+  .fb-grid {
+    @apply grid-cols-[minmax(0,280px)_1fr_minmax(0,350px)] gap-6;
+  }
 }
